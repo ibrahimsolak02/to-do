@@ -1,0 +1,50 @@
+<div class="home-container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>ToDos</h1>
+        <p>There is nothing you can do without work</p>
+    </section>
+
+    @if(!isUpdateWorkFormActive){
+        <section class="input-section">
+            <input type="text" class="custom-input" placeholder="Metin girin..." [(ngModel)]="work">
+        </section>
+    
+        <section class="input-section">
+            <input type="date" id="date-input" name="date-input" class="date-input" placeholder="Tarih seçin"
+                [(ngModel)]="date">
+        </section>
+    
+        <section class="cta-btn-section">
+            <button class="cta-btn-save" (click)="save()">Save</button>
+        </section>
+    }@else {
+        <section class="input-section">
+            <input type="text" class="custom-input" placeholder="Metin girin..." [(ngModel)]="updateWork">
+        </section>
+    
+        <section class="input-section">
+            <input type="date" id="date-input" name="date-input" class="date-input" placeholder="Tarih seçin"
+                [(ngModel)]="date">
+        </section>
+    
+        <section class="cta-btn-section">
+            <button class="cta-btn-save" (click)="update()">Update</button>
+        </section>
+    }
+    
+
+    <section class="card-section">
+        <ul>
+            <li class="card" *ngFor="let todo of todos; let i = index">
+                {{ i+1 }} - {{ todo.text }} ({{ todo.date }})
+                @if(!isUpdateWorkFormActive){
+                    <section>
+                    <button class="cta-btn" (click)="delete(i)">Delete</button>
+                    <button class="cta-btn" (click)="get(i)">Update</button>
+                    </section>
+                }
+            </li>
+        </ul>
+    </section>
+</div>

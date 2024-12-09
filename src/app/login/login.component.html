@@ -1,0 +1,18 @@
+<div class="login-container">
+    <h1>Please Log in to use the app</h1>
+    <hr />
+    <div class="form-container">
+        <section class="input-section">
+            <input class="custom-input" type="text" placeholder="Username" [(ngModel)]="userName" />
+        </section>
+        <section class="input-section">
+            <input class="custom-input" type="password" placeholder="Password" [(ngModel)]="password" />
+        </section>
+        <button (click)="login()" class="cta-btn">
+            Log in
+        </button>
+        <p *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </p>
+    </div>
+</div>
