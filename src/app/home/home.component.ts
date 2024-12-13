@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomforDirective } from '../directives/customfor.directive';
 import { CommonModule } from '@angular/common';
 import { TodoItem } from '../models/todo-item.model'; // Modeli import et
+import { DataserviceService } from '../service/dataservice.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { TodoItem } from '../models/todo-item.model'; // Modeli import et
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  userName: string = "";
   work: string = ""; // Metin girdisi
   date: string = ""; // Tarih girdisi
   updateWork: string = ""; 
@@ -20,7 +22,12 @@ export class HomeComponent {
   isUpdateWorkFormActive: boolean = false;
   todos: TodoItem[] = []; // TodoItem modeli kullanılıyor
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef,private dataService:DataserviceService) {
+    this.dataService.currentData.subscribe((newData) => {
+      this.userName = newData;
+      console.log(this.userName);
+    })
+  }
 
   save() {
     if (this.work.trim() !== "" && this.date.trim() !== "") {
